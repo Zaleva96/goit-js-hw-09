@@ -7,11 +7,30 @@
     <title>Form</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
+
   <body>
     <main>
       <div class="container">
         <a class="back-link" href="./index.html">Go back</a>
+
         <h1 class="main-title">Form</h1>
+
+        <form class="feedback-form" autocomplete="off">
+          <label>
+            Email:
+            <input type="email" name="email" placeholder="Enter your email" />
+          </label>
+
+          <label>
+            Message:
+            <textarea
+              name="message"
+              placeholder="Write your message..."
+            ></textarea>
+          </label>
+
+          <button type="submit">Send</button>
+        </form>
       </div>
     </main>
 
