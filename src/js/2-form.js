@@ -1,20 +1,27 @@
 const form = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
 
-const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-form.email.value = savedData.email || '';
-form.message.value = savedData.message || '';
+const formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+  email: '',
+  message: '',
+};
+
+form.email.value = formData.email || '';
+form.message.value = formData.message || '';
 
 form.addEventListener('input', () => {
-  const formData = {
-    email: form.email.value,
-    message: form.message.value,
-  };
+  formData.email = form.email.value;
+  formData.message = form.message.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
 form.addEventListener('submit', evt => {
   evt.preventDefault();
+
+  if (!form.email.value.trim() || !form.message.value.trim()) {
+    alert('Будь ласка, заповніть усі поля перед відправленням!');
+    return;
+  }
 
   console.log('Form submitted:', {
     email: form.email.value,
