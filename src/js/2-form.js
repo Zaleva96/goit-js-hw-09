@@ -18,16 +18,19 @@ form.addEventListener('input', () => {
 form.addEventListener('submit', evt => {
   evt.preventDefault();
 
-  if (!form.email.value.trim() || !form.message.value.trim()) {
+  formData.email = form.email.value.trim();
+  formData.message = form.message.value.trim();
+
+  if (!formData.email || !formData.message) {
     alert('Будь ласка, заповніть усі поля перед відправленням!');
     return;
   }
 
-  console.log('Form submitted:', {
-    email: form.email.value,
-    message: form.message.value,
-  });
+  console.log('Form submitted:', formData);
 
   localStorage.removeItem(STORAGE_KEY);
   form.reset();
+
+  formData.email = '';
+  formData.message = '';
 });
